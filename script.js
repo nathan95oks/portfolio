@@ -59,12 +59,18 @@
 
   /* copy email */
   const copy = $("#copy-mail");
+  const copyStatus = $("small", copy);
+  let copyTimer;
+  copy.setAttribute("aria-label", `Copy email address ${copy.dataset.email}`);
+  copyStatus.setAttribute("role", "status");
+  copyStatus.setAttribute("aria-live", "polite");
   copy.addEventListener("click", async () => {
-    const small = $("small", copy);
-    try { await navigator.clipboard.writeText(copy.dataset.email); small.textContent = "copied ✓"; }
-    catch { location.href = "mailto:" + copy.dataset.email; }
-    setTimeout(() => (small.textContent = "copy"), 1600);
+    clearTimeout(copyTimer);
+    try { await navigator.clipboard.writeText(copy.dataset.email); copyStatus.textContent = "copied ✓"; }
+    catch { copyStatus.textContent = "opening mail"; location.href = "mailto:" + copy.dataset.email; }
+    copyTimer = setTimeout(() => (copyStatus.textContent = "copy"), 1600);
   });
+  $$(".project .link").forEach((l) => l.setAttribute("aria-label", `View ${$("h3", l.closest(".project")).textContent.trim()} on GitHub (opens in a new tab)`));
 
   /* scroll handlers */
   let tick2 = false;
@@ -75,12 +81,17 @@
   if (!fine || reduced) return;
 
   /* custom cursor + dot-grid glow */
+  document.documentElement.classList.add("custom-cursor");
   const cur = $(".cursor"), dots = $(".dots-glow");
-  let x = 0, y = 0, cx = 0, cy = 0;
+  let x = 0, y = 0, cx = 0, cy = 0, started = false;
   addEventListener("pointermove", (e) => {
-    x = e.clientX; y = e.clientY; cur.classList.add("on");
+    x = e.clientX; y = e.clientY;
+    if (!started) { cx = x; cy = y; started = true; }
+    cur.classList.add("on");
     dots.style.setProperty("--mx", x + "px"); dots.style.setProperty("--my", y + "px");
   }, { passive: true });
+  document.addEventListener("pointerleave", () => cur.classList.remove("on"));
+  addEventListener("blur", () => cur.classList.remove("on"));
   (function loop() { cx += (x - cx) * 0.2; cy += (y - cy) * 0.2; cur.style.transform = `translate(${cx}px,${cy}px)`; requestAnimationFrame(loop); })();
   $$("a, button, .card, .project").forEach((el) => {
     el.addEventListener("pointerenter", () => cur.classList.add("big"));
@@ -98,11 +109,14 @@
 
   /* card tilt */
   $$("[data-tilt]").forEach((el) => {
+    let frame;
+    el.addEventListener("pointerenter", () => el.classList.add("is-tilting"));
     el.addEventListener("pointermove", (e) => {
       const r = el.getBoundingClientRect();
       const px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
-      el.style.transform = `perspective(900px) rotateY(${px * 6}deg) rotateX(${-py * 6}deg) translateY(-3px)`;
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => { el.style.transform = `perspective(900px) rotateY(${px * 6}deg) rotateX(${-py * 6}deg) translateY(-3px)`; });
     });
-    el.addEventListener("pointerleave", () => (el.style.transform = ""));
+    el.addEventListener("pointerleave", () => { cancelAnimationFrame(frame); el.classList.remove("is-tilting"); el.style.transform = ""; });
   });
 })();
