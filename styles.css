@@ -347,3 +347,23 @@ h2 { font-size: clamp(2rem, 5vw, 3.75rem); font-weight: 800; letter-spacing: -0.
 .sl-col .tags li:hover { border-color: var(--accent); background: rgb(255 107 74 / .1); transform: translateY(-2px); }
 @media (max-width: 860px) { .sl-grid { grid-template-columns: 1fr; } .stack-list { margin-top: 3rem; } }
 @media (min-width: 861px) and (max-width: 1150px) { .sl-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---------- Process ---------- */
+.process { display: grid; grid-template-columns: minmax(0, 24rem) 1fr; gap: 4rem; align-items: start; }
+.process-head { position: sticky; top: 6rem; }
+.process-sub { color: var(--muted); margin-top: 1.2rem; max-width: 22rem; }
+.steps { position: relative; display: flex; flex-direction: column; gap: 1.2rem; padding-left: 2.2rem; }
+.steps::before, .steps::after { content: ""; position: absolute; left: 0; top: 1.5rem; bottom: 1.5rem; width: 2px; border-radius: 2px; }
+.steps::before { background: var(--border); }
+.steps::after { background: linear-gradient(var(--accent), var(--accent-2)); transform-origin: top; transform: scaleY(var(--p, 0)); box-shadow: 0 0 14px var(--glow); }
+.step { position: relative; display: grid; grid-template-columns: 3rem 1fr; gap: 1rem; padding: 1.5rem; border: 1px solid var(--border); border-radius: 1.25rem; background: var(--surface); transition: border-color .3s, transform .4s var(--ease); }
+.step:hover { border-color: var(--border-strong); transform: translateX(6px); }
+.step::marker { content: none; }
+.step-n { color: var(--accent); font-size: 1.1rem; padding-top: .25rem; }
+.step h3 { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.03em; }
+.step p { color: var(--muted); margin: .5rem 0 .9rem; max-width: 34rem; }
+.step .tags { margin-top: 0; }
+.step::before { }
+.steps .step > .step-n::before { content: ""; position: absolute; left: calc(-2.2rem - 5px); top: 1.9rem; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--border-strong); transition: all .4s var(--ease); }
+.step.done .step-n::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 14px var(--glow); }
+@media (max-width: 860px) { .process { grid-template-columns: 1fr; gap: 2rem; } .process-head { position: static; } .step { grid-template-columns: 2.4rem 1fr; padding: 1.2rem; } }

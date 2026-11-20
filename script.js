@@ -81,6 +81,14 @@
   /* scroll handlers */
   let tick2 = false;
   addEventListener("scroll", () => { if (tick2) return; tick2 = true; requestAnimationFrame(() => { paint(); tick2 = false; }); }, { passive: true });
+  const stepsEl = $("#steps"), stepEls = $$(".step");
+  const paintSteps = () => {
+    const r = stepsEl.getBoundingClientRect(), mid = innerHeight * 0.6;
+    stepsEl.style.setProperty("--p", Math.min(1, Math.max(0, (mid - r.top) / r.height)).toFixed(3));
+    stepEls.forEach((s) => s.classList.toggle("done", s.getBoundingClientRect().top < mid));
+  };
+  addEventListener("scroll", () => requestAnimationFrame(paintSteps), { passive: true });
+  paintSteps();
   addEventListener("resize", paint);
   paint();
 
