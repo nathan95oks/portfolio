@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nathanael Alba — Software Developer</title>
+  <meta name="description" content="Portfolio of Nathanael Alba — software developer building fast, considered web products." />
+  <meta name="theme-color" content="#120f0d" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23120f0d'/><text x='16' y='23' font-size='20' font-family='sans-serif' font-weight='800' text-anchor='middle' fill='%23ff6b4a'>N</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="dots" aria-hidden="true"><div class="dots-base"></div><div class="dots-glow"></div></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"></div>
+
+  <!-- left rail -->
+  <aside class="rail" aria-label="Section navigation">
+    <a class="rail-logo" href="#top">NA<span>.</span></a>
+    <nav class="rail-nav">
+      <a href="#top" data-spy="top"><i></i><span>Intro</span></a>
+      <a href="#manifesto" data-spy="manifesto"><i></i><span>Manifesto</span></a>
+      <a href="#stack" data-spy="stack"><i></i><span>Toolkit</span></a>
+      <a href="#work" data-spy="work"><i></i><span>Work</span></a>
+      <a href="#contact" data-spy="contact"><i></i><span>Contact</span></a>
+    </nav>
+    <div class="rail-clock mono" id="clock">--:--</div>
+  </aside>
+
+  <header class="topbar">
+    <span class="pill mono"><b class="ping"></b>Open to opportunities</span>
+    <a class="btn btn-ghost magnetic" href="#contact"><span>Say hello</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="top" class="hero">
+      <p class="hero-kicker mono reveal-up" style="--d:.1s">( Portfolio — 2026 )</p>
+      <h1 class="hero-name" aria-label="Nathanael Alba">
+        <span class="line"><span class="chars" data-split>Nathanael</span></span>
+        <span class="line line-2"><span class="chars" data-split>Alba<em>.</em></span></span>
+      </h1>
+      <div class="hero-foot">
+        <p class="hero-desc reveal-up" style="--d:.9s">
+          Software developer crafting <mark>fast, considered</mark> web products — from the database to the last pixel of motion.
+        </p>
+        <div class="hero-meta mono reveal-up" style="--d:1.1s">
+          <span>Based in Bolivia</span>
+          <span>UTC−4</span>
+        </div>
+      </div>
+      <div class="scroll-cue mono" aria-hidden="true"><span>scroll</span><i></i></div>
+    </section>
+
+    <!-- MANIFESTO -->
+    <section id="manifesto" class="manifesto">
+      <p class="eyebrow mono">01 / Manifesto</p>
+      <p class="statement" id="statement">I believe good software is quiet. It loads instantly, it explains itself, and it earns trust on the tenth visit — not just the first. I prototype fast, measure honestly, and ship things that survive real users.</p>
+      <ul class="values">
+        <li><b>Craft</b><span>details are the product</span></li>
+        <li><b>Speed</b><span>shipped beats perfect</span></li>
+        <li><b>Clarity</b><span>simple scales</span></li>
+      </ul>
+    </section>
+
+    <!-- TOOLKIT -->
+    <section id="stack" class="stack">
+      <div class="section-head">
+        <p class="eyebrow mono">02 / Toolkit</p>
+        <h2>What I build with</h2>
+      </div>
+      <div class="bento">
+        <article class="card spot big" data-tilt>
+          <span class="idx mono">01</span>
+          <h3>Frontend</h3>
+          <p>Interfaces that feel alive — accessible, responsive and animated with intent.</p>
+          <ul class="tags mono"><li>React</li><li>Next.js</li><li>TypeScript</li><li>CSS</li></ul>
+        </article>
+        <article class="card spot" data-tilt>
+          <span class="idx mono">02</span>
+          <h3>Backend</h3>
+          <p>APIs that stay boring under load.</p>
+          <ul class="tags mono"><li>Node</li><li>Python</li><li>REST</li></ul>
+        </article>
+        <article class="card spot" data-tilt>
+          <span class="idx mono">03</span>
+          <h3>Data</h3>
+          <p>Schemas that age gracefully.</p>
+          <ul class="tags mono"><li>PostgreSQL</li><li>Firebase</li></ul>
+        </article>
+        <article class="card spot wide" data-tilt>
+          <span class="idx mono">04</span>
+          <h3>Shipping</h3>
+          <p>Git workflows, CI, and deploys that take minutes, not days — plus the habit of writing things down.</p>
+          <ul class="tags mono"><li>Git</li><li>GitHub Actions</li><li>Vercel</li><li>Docker</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <section class="marquee-wrap" aria-hidden="true">
+      <div class="marquee m1"><div class="track"><span>REACT ✦ NEXT.JS ✦ TYPESCRIPT ✦ NODE ✦ PYTHON ✦ POSTGRES ✦ FIGMA ✦ MOTION ✦ </span><span>REACT ✦ NEXT.JS ✦ TYPESCRIPT ✦ NODE ✦ PYTHON ✦ POSTGRES ✦ FIGMA ✦ MOTION ✦ </span></div></div>
+      <div class="marquee m2"><div class="track"><span>BUILD ✦ BREAK ✦ LEARN ✦ SHIP ✦ REPEAT ✦ BUILD ✦ BREAK ✦ LEARN ✦ SHIP ✦ REPEAT ✦ </span><span>BUILD ✦ BREAK ✦ LEARN ✦ SHIP ✦ REPEAT ✦ BUILD ✦ BREAK ✦ LEARN ✦ SHIP ✦ REPEAT ✦ </span></div></div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" class="work">
+      <div class="section-head">
+        <p class="eyebrow mono">03 / Selected work</p>
+        <h2>Things I've shipped</h2>
+      </div>
+      <div class="stacker">
+        <article class="project spot" style="--i:0">
+          <div class="p-meta mono"><span>2026</span><span>Web app</span></div>
+          <h3>Project One</h3>
+          <p>Short, honest description of the problem, your role and the outcome. Replace this with your real project.</p>
+          <ul class="tags mono"><li>React</li><li>Node</li><li>PostgreSQL</li></ul>
+          <a class="link mono" href="#">View project →</a>
+          <div class="p-art a1" aria-hidden="true"></div>
+        </article>
+        <article class="project spot" style="--i:1">
+          <div class="p-meta mono"><span>2025</span><span>Mobile</span></div>
+          <h3>Project Two</h3>
+          <p>Another project. Focus on the decision you made that mattered and the result it produced.</p>
+          <ul class="tags mono"><li>Flutter</li><li>Firebase</li></ul>
+          <a class="link mono" href="#">View project →</a>
+          <div class="p-art a2" aria-hidden="true"></div>
+        </article>
+        <article class="project spot" style="--i:2">
+          <div class="p-meta mono"><span>2025</span><span>Platform</span></div>
+          <h3>Project Three</h3>
+          <p>A third highlight — keep it to two sentences, then link out to the repo or live demo.</p>
+          <ul class="tags mono"><li>Next.js</li><li>TypeScript</li></ul>
+          <a class="link mono" href="#">View project →</a>
+          <div class="p-art a3" aria-hidden="true"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+      <p class="eyebrow mono">04 / Contact</p>
+      <h2 class="big-cta">Have an idea?<br /><span>Let's build it.</span></h2>
+      <div class="cta-row">
+        <button class="btn btn-solid magnetic" id="copy-mail" data-email="nathanaelalba75@gmail.com"><span>nathanaelalba75@gmail.com</span><small class="mono">copy</small></button>
+        <a class="btn btn-ghost magnetic" href="https://github.com/nathan95oks" target="_blank" rel="noopener"><span>GitHub</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot mono">
+    <span>© 2026 Nathanael Alba</span>
+    <span>Hand-built — no frameworks, just HTML, CSS &amp; JS.</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
