@@ -21,6 +21,7 @@
 *,
 *::before,
 *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* overflow-x lives on <html> only: a second overflow on <body> would break position: sticky (the Process journey) */
 html { scroll-behavior: smooth; scroll-padding-top: 4rem; overflow-x: hidden; max-width: 100%; }
 body {
   background: var(--bg);
@@ -28,8 +29,6 @@ body {
   font-family: var(--display);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-  max-width: 100%;
 }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
