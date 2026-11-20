@@ -337,3 +337,13 @@ h2 { font-size: clamp(2rem, 5vw, 3.75rem); font-weight: 800; letter-spacing: -0.
 .brand-365 .job-when { color: var(--fg); }
 .brand-365::before { background: radial-gradient(380px circle at var(--sx, 50%) var(--sy, 50%), #fff, transparent 60%); }
 .brand-365:hover .job-logo { box-shadow: 0 0 30px rgb(255 255 255 / .35); }
+
+/* ---------- Full stack list ---------- */
+.stack-list { margin-top: 5rem; }
+.sl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem 2rem; }
+.sl-col h4 { color: var(--muted); text-transform: uppercase; letter-spacing: .18em; font-weight: 500; margin-bottom: 1rem; padding-bottom: .7rem; border-bottom: 1px solid var(--border); }
+.sl-col .tags { margin-top: 0; gap: .5rem; }
+.sl-col .tags li { padding: .4rem .8rem; border-radius: .6rem; background: var(--surface); color: var(--fg); transition: border-color .3s, color .3s, transform .3s var(--ease), background .3s; }
+.sl-col .tags li:hover { border-color: var(--accent); background: rgb(255 107 74 / .1); transform: translateY(-2px); }
+@media (max-width: 860px) { .sl-grid { grid-template-columns: 1fr; } .stack-list { margin-top: 3rem; } }
+@media (min-width: 861px) and (max-width: 1150px) { .sl-grid { grid-template-columns: repeat(2, 1fr); } }
