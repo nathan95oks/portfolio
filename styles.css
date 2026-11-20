@@ -337,22 +337,3 @@ h2 { font-size: clamp(2rem, 5vw, 3.75rem); font-weight: 800; letter-spacing: -0.
 .brand-365 .job-when { color: var(--fg); }
 .brand-365::before { background: radial-gradient(380px circle at var(--sx, 50%) var(--sy, 50%), #fff, transparent 60%); }
 .brand-365:hover .job-logo { box-shadow: 0 0 30px rgb(255 255 255 / .35); }
-
-/* ---------- OpenHands phone gallery ---------- */
-.brand-openhands { min-height: 32rem; }
-.p-logo.mini { width: 72px; height: 72px; right: auto; left: auto; top: auto; position: static; transform: none; animation: none; filter: none; border-radius: 50%; margin-bottom: .3rem; }
-.shots { position: absolute; right: 2rem; top: 50%; width: 27rem; height: 30rem; transform: translateY(-50%); pointer-events: none; }
-.ph { position: absolute; width: 13rem; height: auto; aspect-ratio: 237 / 480; object-fit: cover; border-radius: 1.6rem; border: 5px solid #0c1020; box-shadow: 0 30px 60px rgb(0 0 0 / .55), 0 0 0 1px rgb(215 127 180 / .35); transition: transform .8s var(--ease); }
-.ph-1 { left: 0; top: 2.2rem; transform: rotate(-7deg); z-index: 1; }
-.ph-2 { left: 7rem; top: 0; transform: rotate(0deg); z-index: 3; }
-.ph-3 { left: 14rem; top: 2.8rem; transform: rotate(7deg); z-index: 2; }
-.brand-openhands:hover .ph-1 { transform: rotate(-11deg) translateX(-14px); }
-.brand-openhands:hover .ph-2 { transform: translateY(-10px) scale(1.03); }
-.brand-openhands:hover .ph-3 { transform: rotate(11deg) translateX(14px); }
-.play { display: inline-flex; align-items: center; padding: .7rem 1.1rem; border: 1px solid var(--brand); border-radius: 999px; color: var(--fg) !important; background: rgb(215 127 180 / .12); }
-.play:hover { background: var(--brand); color: #14122b !important; letter-spacing: .04em; }
-@media (max-width: 860px) {
-  .brand-openhands { min-height: 0; }
-  .shots { position: static; transform: none; width: auto; height: auto; grid-column: 1; display: flex; gap: .8rem; overflow-x: auto; scroll-snap-type: x mandatory; padding: .4rem 0 1rem; pointer-events: auto; }
-  .ph { position: static; flex: 0 0 62%; max-width: 15rem; scroll-snap-align: center; transform: none !important; }
-}
