@@ -52,6 +52,12 @@
     el.style.setProperty("--sy", `${e.clientY - r.top}px`);
   }));
 
+  /* touch devices: light up the card that is centred on screen */
+  if (!fine) {
+    const lit = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle("lit", e.isIntersecting)), { rootMargin: "-35% 0px -35% 0px" });
+    $$(".spot").forEach((el) => lit.observe(el));
+  }
+
   /* local clock */
   const clock = $("#clock");
   const tick = () => { clock.textContent = new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", timeZone: "America/La_Paz" }) + " LPB"; };

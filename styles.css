@@ -255,10 +255,11 @@ h2 { font-size: clamp(2rem, 5vw, 3.75rem); font-weight: 800; letter-spacing: -0.
   .p-art { width: 14rem; height: 14rem; right: -4rem; top: 2rem; transform: none; opacity: .5; }
   .marquee-wrap { margin-left: 0; width: 100%; }
 }
+/* Reduced motion: keep gentle entrances and the marquee, drop the heavy/continuous effects */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-  .ch, .reveal-up, [data-reveal] { opacity: 1; transform: none; }
-  .statement .w { opacity: 1; }
+  html { scroll-behavior: auto; }
+  .grain, .hero::before, .scroll-cue i, .ping::after { animation: none; }
+  .track { animation-duration: 90s; }
 }
 
 /* ---------- Experience + extras ---------- */
@@ -304,3 +305,15 @@ h2 { font-size: clamp(2rem, 5vw, 3.75rem); font-weight: 800; letter-spacing: -0.
   .cta-row .btn-ghost { flex: 1; justify-content: center; }
   .card.wide { flex-direction: column; align-items: flex-start; }
 }
+
+/* ---------- Project logos + brand colour ---------- */
+.brand-opensoul { --brand: #6f7fe0; --brand-2: #4cc3d9; }
+.brand-opensoul { background: linear-gradient(135deg, rgb(111 127 224 / .16), var(--bg) 60%); }
+.brand-opensoul::before { background: radial-gradient(380px circle at var(--sx, 50%) var(--sy, 50%), var(--brand), transparent 60%); }
+.brand-opensoul .link { color: var(--brand-2); }
+.p-logo { position: absolute; right: -1rem; top: 50%; width: 22rem; height: 22rem; object-fit: contain; transform: translateY(-50%); filter: drop-shadow(0 20px 50px rgb(111 127 224 / .45)); animation: floaty 6s ease-in-out infinite; transition: transform .8s var(--ease); }
+@keyframes floaty { 50% { transform: translateY(calc(-50% - 14px)) rotate(3deg); } }
+@media (max-width: 860px) { .p-logo { width: 9rem; height: 9rem; right: 1rem; top: 1.2rem; transform: none; animation: floaty-m 6s ease-in-out infinite; } }
+@keyframes floaty-m { 50% { transform: translateY(-10px) rotate(4deg); } }
+/* touch devices: cards glow when they scroll into the middle of the screen */
+@media (hover: none) { .spot.lit::before, .spot.lit::after { opacity: 1; } .spot::before { background: radial-gradient(420px circle at 50% 0%, var(--brand, var(--accent)), transparent 60%); } }
