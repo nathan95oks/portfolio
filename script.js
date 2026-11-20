@@ -24,8 +24,8 @@
   const words = st.textContent.trim().split(/\s+/);
   st.innerHTML = words.map((w) => `<span class="w">${w}</span>`).join(" ");
   const ws = $$(".w", st);
-  const paint = () => {
-    const r = st.getBoundingClientRect();
+  const paint = (r = st.getBoundingClientRect()) => {
+    if (r.bottom < -300 || r.top > innerHeight + 300) return;
     const p = Math.min(1, Math.max(0, (innerHeight * 0.85 - r.top) / (r.height + innerHeight * 0.3)));
     const k = Math.round(p * ws.length);
     ws.forEach((w, i) => w.classList.toggle("on", i < k));
@@ -46,11 +46,23 @@
   $$("main section[id]").forEach((s) => spy.observe(s));
 
   /* spotlight borders follow the pointer */
-  $$(".spot").forEach((el) => el.addEventListener("pointermove", (e) => {
-    const r = el.getBoundingClientRect();
-    el.style.setProperty("--sx", `${e.clientX - r.left}px`);
-    el.style.setProperty("--sy", `${e.clientY - r.top}px`);
-  }));
+  if (fine) $$(".spot").forEach((el) => {
+    let raf = 0, px = 0, py = 0;
+    el.addEventListener("pointermove", (e) => {
+      px = e.clientX; py = e.clientY;
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const r = el.getBoundingClientRect();
+        el.style.setProperty("--sx", `${px - r.left}px`);
+        el.style.setProperty("--sy", `${py - r.top}px`);
+      });
+    }, { passive: true });
+  });
+
+  /* pause infinite animations while their section is off-screen */
+  const offIO = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle("is-off", !e.isIntersecting)), { rootMargin: "100px" });
+  $$(".hero, .marquee, .project").forEach((el) => offIO.observe(el));
 
   /* touch devices: everything that reaches the middle of the screen plays its hover animation */
   if (!fine) {
@@ -80,8 +92,6 @@
   $$(".project .link").forEach((l) => l.setAttribute("aria-label", `View ${$("h3", l.closest(".project")).textContent.trim()} on GitHub (opens in a new tab)`));
 
   /* scroll handlers */
-  let tick2 = false;
-  addEventListener("scroll", () => { if (tick2) return; tick2 = true; requestAnimationFrame(() => { paint(); tick2 = false; }); }, { passive: true });
   /* process: pinned journey on desktop, in-view animation on mobile */
   const proc = $("#process"), psteps = $$(".pstep"), tbtns = $$(".p-track button"), pfill = $("#pfill");
   const mqM = matchMedia("(max-width: 860px)");
@@ -91,10 +101,11 @@
     psteps.forEach((s, k) => { s.classList.toggle("on", k === i); s.classList.toggle("past", k < i); });
     tbtns.forEach((b, k) => { b.classList.toggle("on", k === i); b.classList.toggle("done", k < i); });
   };
-  const paintProc = () => {
+  const paintProc = (r = proc.getBoundingClientRect()) => {
     if (mqM.matches) return;
+    if (r.bottom < -100 || r.top > innerHeight + 100) return;
     const span = proc.offsetHeight - innerHeight;
-    const p = Math.min(1, Math.max(0, -proc.getBoundingClientRect().top / span));
+    const p = Math.min(1, Math.max(0, -r.top / span));
     pfill.parentElement.style.setProperty("--pp", p.toFixed(3));
     setStep(Math.min(psteps.length - 1, Math.floor(p * psteps.length)));
   };
@@ -104,7 +115,15 @@
   }));
   const procIO = new IntersectionObserver((es) => es.forEach((e) => { if (mqM.matches) e.target.classList.toggle("on", e.isIntersecting); }), { rootMargin: "-20% 0px -20% 0px" });
   psteps.forEach((s) => procIO.observe(s));
-  addEventListener("scroll", () => requestAnimationFrame(paintProc), { passive: true });
+  let ticking = false;
+  addEventListener("scroll", () => {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      const r1 = st.getBoundingClientRect(), r2 = proc.getBoundingClientRect(); // read first…
+      paint(r1); paintProc(r2);                                               // …then write
+    });
+  }, { passive: true });
   addEventListener("resize", () => { curStep = -1; if (mqM.matches) psteps.forEach((s) => s.classList.remove("past")); paintProc(); });
   paintProc();
   addEventListener("resize", paint);
@@ -112,19 +131,27 @@
 
   if (!fine || reduced) return;
 
-  /* custom cursor + dot-grid glow */
+  /* custom cursor + dot-grid glow: transform-only, one rAF loop that sleeps when idle */
   document.documentElement.classList.add("custom-cursor");
   const cur = $(".cursor"), dots = $(".dots-glow");
-  let x = 0, y = 0, cx = 0, cy = 0, started = false;
+  const GRID = 26, HALF = 240, mod = (v) => ((v % GRID) + GRID) % GRID;
+  let x = 0, y = 0, cx = 0, cy = 0, started = false, raf = 0, last = 0;
+  const draw = (t) => {
+    const dt = Math.min(64, t - (last || t)); last = t;
+    const k = 1 - Math.pow(1e-9, dt / 1000);               // time-based smoothing: same feel at any frame rate
+    cx += (x - cx) * k; cy += (y - cy) * k;
+    cur.style.transform = `translate3d(${cx}px,${cy}px,0)`;
+    dots.style.transform = `translate3d(${x - HALF}px,${y - HALF}px,0)`;
+    dots.style.backgroundPosition = `${mod(HALF - x)}px ${mod(HALF - y)}px`;
+    if (Math.abs(x - cx) + Math.abs(y - cy) > 0.1) raf = requestAnimationFrame(draw); else { raf = 0; last = 0; }
+  };
   addEventListener("pointermove", (e) => {
     x = e.clientX; y = e.clientY;
-    if (!started) { cx = x; cy = y; started = true; }
-    cur.classList.add("on");
-    dots.style.setProperty("--mx", x + "px"); dots.style.setProperty("--my", y + "px");
+    if (!started) { cx = x; cy = y; started = true; cur.classList.add("on"); dots.classList.add("on"); }
+    if (!raf) raf = requestAnimationFrame(draw);
   }, { passive: true });
-  document.addEventListener("pointerleave", () => cur.classList.remove("on"));
-  addEventListener("blur", () => cur.classList.remove("on"));
-  (function loop() { cx += (x - cx) * 0.2; cy += (y - cy) * 0.2; cur.style.transform = `translate(${cx}px,${cy}px)`; requestAnimationFrame(loop); })();
+  document.addEventListener("pointerleave", () => { cur.classList.remove("on"); dots.classList.remove("on"); started = false; });
+  addEventListener("blur", () => { cur.classList.remove("on"); dots.classList.remove("on"); started = false; });
   $$("a, button, .card, .project").forEach((el) => {
     el.addEventListener("pointerenter", () => cur.classList.add("big"));
     el.addEventListener("pointerleave", () => cur.classList.remove("big"));
