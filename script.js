@@ -52,10 +52,11 @@
     el.style.setProperty("--sy", `${e.clientY - r.top}px`);
   }));
 
-  /* touch devices: light up the card that is centred on screen */
+  /* touch devices: everything that reaches the middle of the screen plays its hover animation */
   if (!fine) {
-    const lit = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle("lit", e.isIntersecting)), { rootMargin: "-35% 0px -35% 0px" });
-    $$(".spot").forEach((el) => lit.observe(el));
+    document.documentElement.classList.add("touch");
+    const lit = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle("lit", e.isIntersecting)), { rootMargin: "-38% 0px -38% 0px" });
+    $$(".spot, .values li, .sl-col").forEach((el) => lit.observe(el));
   }
 
   /* local clock */

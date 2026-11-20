@@ -315,8 +315,7 @@ h2 { font-size: clamp(2rem, 5vw, 3.75rem); font-weight: 800; letter-spacing: -0.
 @keyframes floaty { 50% { transform: translateY(calc(-50% - 14px)) rotate(3deg); } }
 @media (max-width: 860px) { .p-logo { width: 9rem; height: 9rem; right: 1rem; top: 1.2rem; transform: none; animation: floaty-m 6s ease-in-out infinite; } }
 @keyframes floaty-m { 50% { transform: translateY(-10px) rotate(4deg); } }
-/* touch devices: cards glow when they scroll into the middle of the screen */
-@media (hover: none) { .spot.lit::before, .spot.lit::after { opacity: 1; } .spot::before { background: radial-gradient(420px circle at 50% 0%, var(--brand, var(--accent)), transparent 60%); } }
+/* touch: see ".touch" rules at the end of this file */
 
 /* ---------- OpenHands / Andean / 365Soft brand colours ---------- */
 .brand-openhands { --brand: #d77fb4; --brand-2: #55b9e3; background: linear-gradient(135deg, rgb(22 42 86 / .75), var(--bg) 65%); }
@@ -439,3 +438,37 @@ h2 { font-size: clamp(2rem, 5vw, 3.75rem); font-weight: 800; letter-spacing: -0.
   .scene { width: 7rem; border-radius: 1.2rem; }
   .ptxt p { font-size: 1rem; }
 }
+
+/* ---------- AI lab ---------- */
+.ai-lab { margin-top: 5rem; }
+.ai-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.ai-grid .card { grid-column: auto; min-height: 20rem; }
+@media (max-width: 860px) { .ai-grid { grid-template-columns: 1fr; } .ai-grid .card { min-height: 0; } .ai-lab { margin-top: 3rem; } }
+
+/* ---------- Touch: "lit" mirrors every hover effect ---------- */
+.touch .spot::before { background: radial-gradient(420px circle at 50% 0%, var(--brand, var(--accent)), transparent 60%); }
+.touch .brand-andean::before { background: radial-gradient(420px circle at 50% 0%, #ff3fa4, #3b6bff 45%, transparent 70%); }
+.touch .brand-365::before { background: radial-gradient(420px circle at 50% 0%, #fff, transparent 60%); }
+.touch .spot.lit::before, .touch .spot.lit::after { opacity: 1; }
+.touch .card.lit, .touch .project.lit, .touch .job.lit { border-color: var(--border-strong); }
+.touch .card.lit { transform: translateY(-4px); }
+.touch .card.lit .tags li, .touch .project.lit .tags li { color: var(--fg); border-color: var(--border-strong); }
+.touch .job.lit { transform: translateY(-4px); }
+.touch .job.lit .job-logo { transform: rotate(-6deg) scale(1.1); }
+.touch .brand-andean.lit { border-color: rgb(255 63 164 / .5); }
+.touch .brand-andean.lit .job-logo { box-shadow: -8px 0 28px rgb(255 63 164 / .45), 8px 0 28px rgb(59 107 255 / .45); }
+.touch .brand-365.lit { border-color: rgb(255 255 255 / .45); }
+.touch .brand-365.lit .job-logo { box-shadow: 0 0 30px rgb(255 255 255 / .35); }
+.touch .project.lit .p-art { transform: translateY(-50%) rotate(25deg) scale(1.08); }
+.touch .project.lit .a3 { transform: translateY(-50%) rotate(-4deg) scale(1.06); }
+.touch .project.lit .link { letter-spacing: .1em; }
+.touch .values li.lit { background: var(--bg-2); }
+.touch .sl-col.lit .tags li { border-color: var(--accent); background: rgb(255 107 74 / .1); }
+.touch .sl-col.lit h4 { color: var(--accent-2); }
+@media (max-width: 860px) {
+  .touch .project.lit .p-art { transform: rotate(25deg) scale(1.1); }
+  .touch .project.lit .a3 { transform: rotate(-4deg) scale(1.06); }
+  .touch .project.lit .a1.alt { transform: scaleX(-1) rotate(-25deg) scale(1.1); }
+  .touch .project.lit .p-logo { transform: scale(1.12) rotate(4deg); }
+}
+.job, .values li, .sl-col .tags li, .p-logo { transition-property: border-color, transform, background, box-shadow, color; }
