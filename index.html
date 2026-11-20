@@ -60,11 +60,11 @@
     <!-- MANIFESTO -->
     <section id="manifesto" class="manifesto">
       <p class="eyebrow mono">01 / About</p>
-      <p class="statement" id="statement">Systems engineer. I turn real problems into working software — a sign language app for legal procedures, a gym admin platform, an inventory system for an importer. I work test-first, ship in small steps, and use AI as a teammate, not a shortcut.</p>
+      <p class="statement" id="statement">Systems engineer. I turn real problems into working software — a sign language app for legal procedures, a gym admin platform, an inventory system for an importer. I work spec-first and test-first, train and evaluate my own models, and put AI agents to work — as teammates, not shortcuts.</p>
       <ul class="values">
-        <li><b>Test-first</b><span>TDD, CI and regression checklists</span></li>
+        <li><b>Test-first</b><span>TDD, BDD, CI and regression checklists</span></li>
         <li><b>Impact</b><span>software that people actually need</span></li>
-        <li><b>AI-native</b><span>RAG, Bedrock and agent orchestration</span></li>
+        <li><b>AI-native</b><span>models, agents, RAG and evals</span></li>
       </ul>
     </section>
 
@@ -100,15 +100,38 @@
           <ul class="tags mono"><li>MediaPipe</li><li>PyTorch</li><li>TensorFlow</li><li>ONNX</li><li>ChromaDB</li><li>scikit-learn</li></ul>
         </article>
       </div>
+      <div class="ai-lab">
+        <p class="eyebrow mono">AI lab</p>
+        <div class="ai-grid">
+          <article class="card spot" data-tilt>
+            <span class="idx mono">A</span>
+            <h3>Training models</h3>
+            <p>I collect the data, train, evaluate and ship: sign-alphabet recognition exported to ONNX, a hand-sign model retrained for the Totem kiosk, and PyTorch sentiment models compared across experiments.</p>
+            <ul class="tags mono"><li>PyTorch</li><li>ONNX</li><li>scikit-learn</li><li>TensorFlow</li><li>MediaPipe</li></ul>
+          </article>
+          <article class="card spot" data-tilt>
+            <span class="idx mono">B</span>
+            <h3>Agents &amp; MCP</h3>
+            <p>Agents that act: an Othello player built on Minimax with alpha-beta pruning, an MCP server exposing tools, resources and prompts, and AI-agent orchestration inside my spec-driven workflow.</p>
+            <ul class="tags mono"><li>AI agents</li><li>MCP</li><li>Minimax</li><li>Orchestration</li></ul>
+          </article>
+          <article class="card spot" data-tilt>
+            <span class="idx mono">C</span>
+            <h3>RAG &amp; evals</h3>
+            <p>Retrieval over a local corpus of 167 procedures and 616 questions with Bedrock embeddings — plus evals that check model output instead of trusting it.</p>
+            <ul class="tags mono"><li>RAG</li><li>Bedrock</li><li>ChromaDB</li><li>Evals</li></ul>
+          </article>
+        </div>
+      </div>
       <div class="stack-list">
         <p class="eyebrow mono">Full list</p>
         <div class="sl-grid">
-          <div class="sl-col"><h4 class="mono">AI &amp; automation</h4><ul class="tags mono"><li>LLMs</li><li>Prompt engineering</li><li>Model output evaluation</li><li>AI agents</li><li>API integration</li><li>RAG</li><li>Amazon Bedrock</li><li>MediaPipe</li><li>PyTorch</li><li>TensorFlow</li></ul></div>
+          <div class="sl-col"><h4 class="mono">AI &amp; automation</h4><ul class="tags mono"><li>LLMs</li><li>Prompt engineering</li><li>Model output evaluation</li><li>AI agents</li><li>API integration</li><li>Model training</li><li>Agent orchestration</li><li>MCP</li><li>RAG</li><li>Amazon Bedrock</li><li>MediaPipe</li><li>PyTorch</li><li>TensorFlow</li></ul></div>
           <div class="sl-col"><h4 class="mono">Languages</h4><ul class="tags mono"><li>TypeScript</li><li>JavaScript</li><li>Python</li><li>Kotlin</li><li>Dart</li><li>PHP</li><li>C#</li><li>Java</li><li>C++</li></ul></div>
           <div class="sl-col"><h4 class="mono">Frontend</h4><ul class="tags mono"><li>React</li><li>Next.js (App Router)</li><li>Vue.js</li><li>Tailwind CSS</li><li>shadcn/ui</li><li>HTML5</li><li>Flutter</li><li>Jetpack Compose</li></ul></div>
           <div class="sl-col"><h4 class="mono">Backend</h4><ul class="tags mono"><li>Node.js</li><li>NestJS</li><li>Flask</li><li>FastAPI</li><li>Laravel</li><li>ASP.NET</li><li>Supabase</li><li>Microservices</li><li>WebSockets</li><li>REST</li></ul></div>
           <div class="sl-col"><h4 class="mono">Databases</h4><ul class="tags mono"><li>PostgreSQL</li><li>MySQL</li><li>MongoDB</li><li>Firebase</li><li>ChromaDB</li></ul></div>
-          <div class="sl-col"><h4 class="mono">Tools &amp; methods</h4><ul class="tags mono"><li>Git</li><li>pnpm</li><li>Docker</li><li>AWS</li><li>GitHub Actions</li><li>Figma</li><li>Scrum</li><li>Jira</li><li>Linear</li><li>Notion</li></ul></div>
+          <div class="sl-col"><h4 class="mono">Tools &amp; methods</h4><ul class="tags mono"><li>Git</li><li>pnpm</li><li>Docker</li><li>AWS</li><li>GitHub Actions</li><li>Figma</li><li>TDD</li><li>BDD</li><li>SDD</li><li>Cucumber</li><li>Selenium</li><li>Scrum</li><li>Jira</li><li>Linear</li><li>Notion</li></ul></div>
         </div>
       </div>
     </section>
@@ -178,7 +201,7 @@
         <article class="pstep" data-i="5">
           <span class="bignum" aria-hidden="true">05</span>
           <div class="scene"><svg viewBox="0 0 200 200" class="sc"><circle class="orbit" cx="100" cy="100" r="62"/><g class="lbls"><text class="t t0" x="100" y="30">SPEC</text><text class="t t1" x="176" y="104">TEST</text><text class="t t2" x="100" y="182">CODE</text><text class="t t3" x="24" y="104">DEMO</text></g><path class="tick big" d="M82 100l14 14 26-30"/></svg></div>
-          <div class="ptxt"><span class="pidx mono">Step 05</span><h3>Build with SDD</h3><p>Spec → test → code → demo.</p></div>
+          <div class="ptxt"><span class="pidx mono">Step 05</span><h3>Build with SDD &amp; TDD</h3><p>Spec → failing test → code → demo.</p></div>
         </article>
         <article class="pstep" data-i="6">
           <span class="bignum" aria-hidden="true">06</span>
@@ -186,7 +209,7 @@
           <div class="ptxt"><span class="pidx mono">Step 06</span><h3>Ship &amp; iterate</h3><p>CI, deploy, feedback, repeat.</p></div>
         </article>
         </div>
-        <ol class="p-track" aria-label="Process steps"><i class="p-fill" id="pfill"></i><li><button type="button" data-go="0" aria-label="Go to step 00: Understand"><b class="mono">00</b><span class="mono">Understand</span></button></li><li><button type="button" data-go="1" aria-label="Go to step 01: Functions &amp; flows"><b class="mono">01</b><span class="mono">Functions &amp; flows</span></button></li><li><button type="button" data-go="2" aria-label="Go to step 02: Architecture"><b class="mono">02</b><span class="mono">Architecture</span></button></li><li><button type="button" data-go="3" aria-label="Go to step 03: Look &amp; motion"><b class="mono">03</b><span class="mono">Look &amp; motion</span></button></li><li><button type="button" data-go="4" aria-label="Go to step 04: Pick the stack"><b class="mono">04</b><span class="mono">Pick the stack</span></button></li><li><button type="button" data-go="5" aria-label="Go to step 05: Build with SDD"><b class="mono">05</b><span class="mono">Build with SDD</span></button></li><li><button type="button" data-go="6" aria-label="Go to step 06: Ship &amp; iterate"><b class="mono">06</b><span class="mono">Ship &amp; iterate</span></button></li></ol>
+        <ol class="p-track" aria-label="Process steps"><i class="p-fill" id="pfill"></i><li><button type="button" data-go="0" aria-label="Go to step 00: Understand"><b class="mono">00</b><span class="mono">Understand</span></button></li><li><button type="button" data-go="1" aria-label="Go to step 01: Functions &amp; flows"><b class="mono">01</b><span class="mono">Functions &amp; flows</span></button></li><li><button type="button" data-go="2" aria-label="Go to step 02: Architecture"><b class="mono">02</b><span class="mono">Architecture</span></button></li><li><button type="button" data-go="3" aria-label="Go to step 03: Look &amp; motion"><b class="mono">03</b><span class="mono">Look &amp; motion</span></button></li><li><button type="button" data-go="4" aria-label="Go to step 04: Pick the stack"><b class="mono">04</b><span class="mono">Pick the stack</span></button></li><li><button type="button" data-go="5" aria-label="Go to step 05: Build with SDD &amp; TDD"><b class="mono">05</b><span class="mono">SDD &amp; TDD</span></button></li><li><button type="button" data-go="6" aria-label="Go to step 06: Ship &amp; iterate"><b class="mono">06</b><span class="mono">Ship &amp; iterate</span></button></li></ol>
       </div>
     </section>
 
@@ -241,7 +264,7 @@
         <a class="btn btn-ghost magnetic" href="https://github.com/nathan95oks" target="_blank" rel="noopener"><span>GitHub</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
         <a class="btn btn-ghost magnetic" href="https://linkedin.com/in/joshua-alba-347336380" target="_blank" rel="noopener"><span>LinkedIn</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
       </div>
-      <p class="edu mono">Systems Engineer · Universidad Católica Boliviana “San Pablo” · 2021 — 2026 &nbsp;|&nbsp; Spanish (native) · English (upper-intermediate / advanced)</p>
+      <p class="edu mono">Systems Engineer · Universidad Católica Boliviana “San Pablo” &nbsp;|&nbsp; Spanish (native) · English (upper-intermediate / advanced)</p>
     </section>
   </main>
 
