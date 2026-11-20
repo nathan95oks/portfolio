@@ -115,6 +115,11 @@
   }));
   const procIO = new IntersectionObserver((es) => es.forEach((e) => { if (mqM.matches) e.target.classList.toggle("on", e.isIntersecting); }), { rootMargin: "-20% 0px -20% 0px" });
   psteps.forEach((s) => procIO.observe(s));
+  mqM.addEventListener("change", () => {            // desktop <-> mobile: restart step state from scratch
+    curStep = -1;
+    psteps.forEach((s) => { s.classList.remove("on", "past"); procIO.unobserve(s); procIO.observe(s); });
+    paintProc();
+  });
   let ticking = false;
   addEventListener("scroll", () => {
     if (ticking) return; ticking = true;
@@ -147,15 +152,12 @@
   };
   addEventListener("pointermove", (e) => {
     x = e.clientX; y = e.clientY;
+    cur.classList.toggle("big", !!(e.target.closest && e.target.closest("a, button, .card, .project")));
     if (!started) { cx = x; cy = y; started = true; cur.classList.add("on"); dots.classList.add("on"); }
     if (!raf) raf = requestAnimationFrame(draw);
   }, { passive: true });
-  document.addEventListener("pointerleave", () => { cur.classList.remove("on"); dots.classList.remove("on"); started = false; });
-  addEventListener("blur", () => { cur.classList.remove("on"); dots.classList.remove("on"); started = false; });
-  $$("a, button, .card, .project").forEach((el) => {
-    el.addEventListener("pointerenter", () => cur.classList.add("big"));
-    el.addEventListener("pointerleave", () => cur.classList.remove("big"));
-  });
+  document.addEventListener("pointerleave", () => { cur.classList.remove("on", "big"); dots.classList.remove("on"); started = false; });
+  addEventListener("blur", () => { cur.classList.remove("on", "big"); dots.classList.remove("on"); started = false; });
 
   /* magnetic buttons */
   $$(".magnetic").forEach((el) => {
