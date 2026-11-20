@@ -81,14 +81,31 @@
   /* scroll handlers */
   let tick2 = false;
   addEventListener("scroll", () => { if (tick2) return; tick2 = true; requestAnimationFrame(() => { paint(); tick2 = false; }); }, { passive: true });
-  const stepsEl = $("#steps"), stepEls = $$(".step");
-  const paintSteps = () => {
-    const r = stepsEl.getBoundingClientRect(), mid = innerHeight * 0.6;
-    stepsEl.style.setProperty("--p", Math.min(1, Math.max(0, (mid - r.top) / r.height)).toFixed(3));
-    stepEls.forEach((s) => s.classList.toggle("done", s.getBoundingClientRect().top < mid));
+  /* process: pinned journey on desktop, in-view animation on mobile */
+  const proc = $("#process"), psteps = $$(".pstep"), tbtns = $$(".p-track button"), pfill = $("#pfill");
+  const mqM = matchMedia("(max-width: 860px)");
+  let curStep = -1;
+  const setStep = (i) => {
+    if (i === curStep) return; curStep = i;
+    psteps.forEach((s, k) => { s.classList.toggle("on", k === i); s.classList.toggle("past", k < i); });
+    tbtns.forEach((b, k) => { b.classList.toggle("on", k === i); b.classList.toggle("done", k < i); });
   };
-  addEventListener("scroll", () => requestAnimationFrame(paintSteps), { passive: true });
-  paintSteps();
+  const paintProc = () => {
+    if (mqM.matches) return;
+    const span = proc.offsetHeight - innerHeight;
+    const p = Math.min(1, Math.max(0, -proc.getBoundingClientRect().top / span));
+    pfill.parentElement.style.setProperty("--pp", p.toFixed(3));
+    setStep(Math.min(psteps.length - 1, Math.floor(p * psteps.length)));
+  };
+  tbtns.forEach((b) => b.addEventListener("click", () => {
+    const span = proc.offsetHeight - innerHeight;
+    scrollTo({ top: proc.offsetTop + ((+b.dataset.go + 0.5) / psteps.length) * span });
+  }));
+  const procIO = new IntersectionObserver((es) => es.forEach((e) => { if (mqM.matches) e.target.classList.toggle("on", e.isIntersecting); }), { rootMargin: "-20% 0px -20% 0px" });
+  psteps.forEach((s) => procIO.observe(s));
+  addEventListener("scroll", () => requestAnimationFrame(paintProc), { passive: true });
+  addEventListener("resize", () => { curStep = -1; if (mqM.matches) psteps.forEach((s) => s.classList.remove("past")); paintProc(); });
+  paintProc();
   addEventListener("resize", paint);
   paint();
 

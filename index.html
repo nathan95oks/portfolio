@@ -147,41 +147,47 @@
 
     <!-- PROCESS -->
     <section id="process" class="process">
-      <div class="process-head">
-        <p class="eyebrow mono">04 / Process</p>
-        <h2>How I work</h2>
-        <p class="process-sub">From idea to shipped module — think first, spec second, code third, and always see it running.</p>
+      <div class="pin">
+        <div class="p-top"><p class="eyebrow mono">04 / Process</p><h2>How I work</h2></div>
+        <div class="p-stage">
+        <article class="pstep" data-i="0">
+          <span class="bignum" aria-hidden="true">00</span>
+          <div class="scene"><svg viewBox="0 0 200 200" class="sc"><circle class="ring" cx="100" cy="100" r="30"/><circle class="ring r2" cx="100" cy="100" r="55"/><circle class="ring r3" cx="100" cy="100" r="80"/><path class="ln" d="M100 8v34M100 158v34M8 100h34M158 100h34"/><circle class="dot" cx="100" cy="100" r="8"/></svg></div>
+          <div class="ptxt"><span class="pidx mono">Step 00</span><h3>Understand</h3><p>Who it's for. What winning looks like.</p></div>
+        </article>
+        <article class="pstep" data-i="1">
+          <span class="bignum" aria-hidden="true">01</span>
+          <div class="scene"><svg viewBox="0 0 200 200" class="sc"><path class="flow" d="M40 60 100 35 160 70 150 150 60 150ZM100 35 60 150M100 35 150 150"/><circle class="node" style="--n:0" cx="40" cy="60" r="9"/><circle class="node" style="--n:1" cx="100" cy="35" r="9"/><circle class="node" style="--n:2" cx="160" cy="70" r="9"/><circle class="node" style="--n:3" cx="150" cy="150" r="9"/><circle class="node" style="--n:4" cx="60" cy="150" r="9"/></svg></div>
+          <div class="ptxt"><span class="pidx mono">Step 01</span><h3>Functions &amp; flows</h3><p>What it does and how it connects.</p></div>
+        </article>
+        <article class="pstep" data-i="2">
+          <span class="bignum" aria-hidden="true">02</span>
+          <div class="scene"><svg viewBox="0 0 200 200" class="sc"><rect class="blk" style="--n:0" x="30" y="150" width="140" height="26" rx="6"/><rect class="blk" style="--n:1" x="30" y="114" width="140" height="26" rx="6"/><rect class="blk" style="--n:2" x="30" y="78" width="66" height="26" rx="6"/><rect class="blk" style="--n:3" x="104" y="78" width="66" height="26" rx="6"/><rect class="blk acc" style="--n:4" x="62" y="42" width="76" height="26" rx="6"/></svg></div>
+          <div class="ptxt"><span class="pidx mono">Step 02</span><h3>Architecture</h3><p>Modules that stand on their own.</p></div>
+        </article>
+        <article class="pstep" data-i="3">
+          <span class="bignum" aria-hidden="true">03</span>
+          <div class="scene"><svg viewBox="0 0 200 200" class="sc"><circle class="sw" cx="50" cy="36" r="14"/><circle class="sw sw2" cx="90" cy="36" r="14"/><circle class="sw sw3" cx="130" cy="36" r="14"/><path class="curve" d="M30 170C80 170 90 80 172 80"/><circle class="ball" r="9"/></svg></div>
+          <div class="ptxt"><span class="pidx mono">Step 03</span><h3>Look &amp; motion</h3><p>The feel, decided before the code.</p></div>
+        </article>
+        <article class="pstep" data-i="4">
+          <span class="bignum" aria-hidden="true">04</span>
+          <div class="scene"><svg viewBox="0 0 200 200" class="sc"><rect class="card c1" x="18" y="62" width="48" height="78" rx="10"/><rect class="card c2" x="76" y="62" width="48" height="78" rx="10"/><rect class="card c3 win" x="134" y="62" width="48" height="78" rx="10"/><path class="tick" d="M146 102l9 10 16-20"/></svg></div>
+          <div class="ptxt"><span class="pidx mono">Step 04</span><h3>Pick the stack</h3><p>Best tool for the job — and why.</p></div>
+        </article>
+        <article class="pstep" data-i="5">
+          <span class="bignum" aria-hidden="true">05</span>
+          <div class="scene"><svg viewBox="0 0 200 200" class="sc"><circle class="orbit" cx="100" cy="100" r="62"/><g class="lbls"><text class="t t0" x="100" y="30">SPEC</text><text class="t t1" x="176" y="104">TEST</text><text class="t t2" x="100" y="182">CODE</text><text class="t t3" x="24" y="104">DEMO</text></g><path class="tick big" d="M82 100l14 14 26-30"/></svg></div>
+          <div class="ptxt"><span class="pidx mono">Step 05</span><h3>Build with SDD</h3><p>Spec → test → code → demo.</p></div>
+        </article>
+        <article class="pstep" data-i="6">
+          <span class="bignum" aria-hidden="true">06</span>
+          <div class="scene"><svg viewBox="0 0 200 200" class="sc"><rect class="bar" style="--n:0" x="30" y="120" width="26" height="50" rx="5"/><rect class="bar" style="--n:1" x="68" y="95" width="26" height="75" rx="5"/><rect class="bar" style="--n:2" x="106" y="65" width="26" height="105" rx="5"/><rect class="bar acc" style="--n:3" x="144" y="30" width="26" height="140" rx="5"/><path class="rise" d="M30 105 70 80 110 52 160 18M160 18h-18M160 18v18"/></svg></div>
+          <div class="ptxt"><span class="pidx mono">Step 06</span><h3>Ship &amp; iterate</h3><p>CI, deploy, feedback, repeat.</p></div>
+        </article>
+        </div>
+        <ol class="p-track" aria-label="Process steps"><i class="p-fill" id="pfill"></i><li><button type="button" data-go="0" aria-label="Go to step 00: Understand"><b class="mono">00</b><span class="mono">Understand</span></button></li><li><button type="button" data-go="1" aria-label="Go to step 01: Functions &amp; flows"><b class="mono">01</b><span class="mono">Functions &amp; flows</span></button></li><li><button type="button" data-go="2" aria-label="Go to step 02: Architecture"><b class="mono">02</b><span class="mono">Architecture</span></button></li><li><button type="button" data-go="3" aria-label="Go to step 03: Look &amp; motion"><b class="mono">03</b><span class="mono">Look &amp; motion</span></button></li><li><button type="button" data-go="4" aria-label="Go to step 04: Pick the stack"><b class="mono">04</b><span class="mono">Pick the stack</span></button></li><li><button type="button" data-go="5" aria-label="Go to step 05: Build with SDD"><b class="mono">05</b><span class="mono">Build with SDD</span></button></li><li><button type="button" data-go="6" aria-label="Go to step 06: Ship &amp; iterate"><b class="mono">06</b><span class="mono">Ship &amp; iterate</span></button></li></ol>
       </div>
-      <ol class="steps" id="steps">
-        <li class="step spot">
-          <span class="step-n mono">00</span>
-          <div><h3>Understand</h3><p>Who is it for, what problem does it solve, and how will we know it worked? One page: users, goals, success criteria.</p><ul class="tags mono"><li>Users</li><li>Goals</li><li>Success metrics</li></ul></div>
-        </li>
-        <li class="step spot">
-          <span class="step-n mono">01</span>
-          <div><h3>Functions &amp; flows</h3><p>List every feature and map how they connect: who triggers what, what data moves where. No code yet — just the shape of the product.</p><ul class="tags mono"><li>Feature map</li><li>User flows</li><li>Data flow</li></ul></div>
-        </li>
-        <li class="step spot">
-          <span class="step-n mono">02</span>
-          <div><h3>Architecture</h3><p>Turn the flows into structure: modules, boundaries, APIs and data models, so each piece can be built and tested on its own.</p><ul class="tags mono"><li>Modules</li><li>APIs</li><li>Data model</li></ul></div>
-        </li>
-        <li class="step spot">
-          <span class="step-n mono">03</span>
-          <div><h3>Look &amp; motion</h3><p>Decide the visual language and the animation style the product should have — before it constrains (or is constrained by) the stack.</p><ul class="tags mono"><li>Style</li><li>Motion</li><li>Components</li></ul></div>
-        </li>
-        <li class="step spot">
-          <span class="step-n mono">04</span>
-          <div><h3>Pick the stack</h3><p>Choose the best technology for this product, not the familiar one. Weigh fit, performance, team and trade-offs, then write down why.</p><ul class="tags mono"><li>Trade-offs</li><li>Decision record</li></ul></div>
-        </li>
-        <li class="step spot">
-          <span class="step-n mono">05</span>
-          <div><h3>Build with SDD</h3><p>Spec-Driven Development, module by module: write the spec, derive the tests from its acceptance criteria, then the code. Each module ends with a live demo and review before it is merged.</p><ul class="tags mono"><li>Spec</li><li>Tests</li><li>Code</li><li>Demo</li></ul></div>
-        </li>
-        <li class="step spot">
-          <span class="step-n mono">06</span>
-          <div><h3>Ship &amp; iterate</h3><p>CI runs every test, deploys are one command, and real feedback goes back into the next spec.</p><ul class="tags mono"><li>CI</li><li>Deploy</li><li>Feedback</li></ul></div>
-        </li>
-      </ol>
     </section>
 
     <!-- WORK -->
